@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :join_requests
+
+  Status = {:active => 'ACT', :inactive => 'INA', :deleted => 'DEL'}
 end
