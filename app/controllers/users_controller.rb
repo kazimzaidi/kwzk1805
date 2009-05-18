@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:notice] = 'New user creation successful.'
-        format.html {redirect_to user_dashboard_url}
+        format.html {redirect_to dashboard_url}
       else
-        render :action => :new
+        format.html {render :action => :new}
       end
     end
   end

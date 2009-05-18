@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090518130416) do
+ActiveRecord::Schema.define(:version => 20090518133732) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,40 @@ ActiveRecord::Schema.define(:version => 20090518130416) do
     t.integer  "owner_id"
     t.integer  "creator_id"
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "introductions", :force => true do |t|
+    t.string   "email"
+    t.integer  "sender_id"
+    t.integer  "group_id"
+    t.integer  "receiver_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "email"
+    t.integer  "group_id"
+    t.integer  "receiver_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "join_requests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20090518130416) do
     t.datetime "dob"
     t.string   "gender"
     t.string   "status"
+    t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
