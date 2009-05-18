@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: zookuu_development
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock  
+          
+test:
+  adapter: mysql
+  encoding: utf8
+  database: zookuu_test
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock
+  
+production:
+  adapter: mysql
+  encoding: utf8
+  database: yazookuu
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock

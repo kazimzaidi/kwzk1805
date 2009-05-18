@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :gender
       t.string :status
 
+      t.string :persistence_token
+
       t.timestamps
     end
   end
