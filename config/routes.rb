@@ -3,9 +3,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :groups do |group|
     group.resources :messages
+    group.resources :join_requests
+    group.resources :memberships
   end
+
   map.resources :messages
   map.resource  :dashboard
+  map.resources :memberships
   map.root :controller => 'user_sessions', :action => 'new'
   # The priority is based upon order of creation: first created -> highest priority.
 

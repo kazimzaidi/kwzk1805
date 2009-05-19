@@ -6,6 +6,8 @@
     <li>Owned by <%= link_to @group.owner.name, user_path(@group.owner) -%></li>
     <li>Created by <%= link_to @group.creator.name, user_path(@group.creator) -%></li>
     <li><i><%= @group.group_type == Group::Type[:invite_only] ? "Invite Only" : "Moderated" -%></i></li>
+    <li><%= current_user.is_member_of?(@group) ? link_to('Unjoin', group_join_request_path(@group.id), :method => :delete) : link_to('Join', group_join_requests_path(@group.id), :method => :post) -%></li>
+    <li><%= link_to('Admin', group_join_requests_path(@group)) if current_user.is_owner_of?(@group) -%></li>
   </ul>
 <% end -%>
 <h3>Messages</h3>

@@ -1,0 +1,7 @@
+<h3>Join Requests</h3>
+
+<ul>
+  <% @join_requests.each do |jr| %>
+    <li>From <%= link_to(jr.user.name, '#') %> <%= link_to('Accept', group_join_request_path(jr.group, jr), :method => :put) %> or <%= link_to('Reject', group_join_request_path(jr.group, jr), :method => :put) %></li>
+  <% end %>
+</ul>

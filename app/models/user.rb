@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  concerned_with :authentication
+  concerned_with :authentication, :group
   has_many :groups, :through => :memberships
   has_many :owned_groups, :class_name => 'Group', :foreign_key => :owner_id
 
