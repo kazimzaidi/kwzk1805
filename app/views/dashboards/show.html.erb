@@ -22,18 +22,18 @@
   </p>
 <% end %>
 
-<h3>Your Messages</h3>
-    <ul class="msgs">
-      <% @user.messages.each do |message| %>
-        <li>
-          <span class="msg">
-            <strong><%= link_to "#" + message.group.name, group_path(message.group) -%></strong>
-            <%= message.body %>
-            <span class="metainfo">
-              about <%= time_ago_in_words(message.created_at) -%> ago
-            </span>
-          </span>
-        </li>
-      <% end %>
-      </p>
-    </ul>
+<h3>Messages</h3>
+<ul class="msgs">
+  <% @messages.each do |message| %>
+    <li>
+      <span class="msg">
+        <strong><%= link_to message.user.username, user_path(message.user) -%></strong> 
+        to <strong><%= link_to "#" + message.group.name, group_path(message.group) -%></strong>
+        <%= message.body %>
+        <span class="metainfo">
+          <%= time_ago_in_words(message.created_at) -%> ago
+        </span>
+      </span>
+    </li>
+  <% end %>
+</ul>

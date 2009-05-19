@@ -27,7 +27,7 @@
         <strong><%= link_to message.user.username, user_path(message.user) -%></strong>
         <%= h(message.body) -%>
         <span class="metainfo">
-          about <%= time_ago_in_words(message.created_at) -%> ago
+          <%= time_ago_in_words(message.created_at) -%> ago
         </span>
       </span>
     </li>

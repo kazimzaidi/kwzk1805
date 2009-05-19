@@ -12,6 +12,7 @@
 <h1>zookuu</h1>
 <div style="float: right;">
   <% if current_user %>
+    <%= link_to current_user.username, user_path(current_user) -%> | 
     <%= link_to 'Logout', user_session_path(current_user.id), :method => :delete %>
   <% else %>
     <%= link_to 'Login', new_user_session_path -%> | <%= link_to 'Signup', new_user_path -%>
