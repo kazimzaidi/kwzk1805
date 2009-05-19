@@ -1,5 +1,24 @@
 <h3>Dashboard</h3>
 <p>
-  Welcome, <%= current_user.name -%>!<br />
   <%= link_to 'Create a New Group', new_group_path -%>
+  Welcome, <%= @user.name -%>!
 </p>
+
+<h3>Post Message</h3>
+
+<% form_for @message do |f| %>
+  <p>
+    <%= f.error_messages %><br/>
+    <%= f.label :body, 'Message' %>:
+    <%= f.text_area :body %>
+    <%= f.submit 'Post' %>
+  </p>
+<% end %>
+
+<h3>Your Messages</h3>
+    <ul>
+      <% @user.messages.each do |message| %>
+        <li><p><%= message.body %></p></li>
+      <% end %>
+      </p>
+    </ul>
