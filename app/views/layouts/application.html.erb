@@ -10,6 +10,13 @@
 <div id="container">
 <div id="header">
 <h1>zookuu</h1>
+<div style="float: right;">
+  <% if current_user %>
+    <%= link_to 'Logout', user_session_path(current_user.id), :method => :delete %>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path -%> | <%= link_to 'Signup', new_user_path -%>
+  <% end -%>
+</div>
 
 <h2>group networking</h2>
 <br />
@@ -25,6 +32,9 @@
 
 <div id="main">
   <div id="maincontent">
+    <% if flash[:notice] %>
+      <h3><%= flash[:notice] -%></h3>
+    <% end -%>
     <%= yield %>
   </div> <!-- end main content section -->
 </div> 

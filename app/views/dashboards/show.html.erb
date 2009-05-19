@@ -1,5 +1,5 @@
-<p><%= link_to 'Logout', user_session_path(current_user.id), :method => :delete %></p>
 <h3>Dashboard</h3>
 <p>
-  Welcome, <%= current_user.name -%>!
+  Welcome, <%= current_user.name -%>!<br />
+  <%= link_to 'Create a New Group', new_group_path -%>
 </p>

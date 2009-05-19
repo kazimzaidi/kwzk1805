@@ -1,0 +1,24 @@
+<h3>Create New Group</h3>
+<%= error_messages_for :group %>
+<% form_for @group do |f| -%>
+  <table>
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :caption %></td>
+      <td><%= f.text_field :caption %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.label :group_type, "How new members are added?" %></td>
+    </tr>
+    <tr>
+      <td><%= f.radio_button :group_type, Group::Type[:invite_only], :checked => "checked" -%> Invite Only</td>
+      <td><%= f.radio_button :group_type, Group::Type[:moderated] -%> Moderated</td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= submit_tag "Create" -%></td>
+    </tr>
+  </table>
+<% end -%>

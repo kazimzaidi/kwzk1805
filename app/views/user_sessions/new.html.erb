@@ -1,15 +1,22 @@
 <h3>Login!</h3>
 
 <% form_for @user_session do |f| %>
-  <p>
-    <%= f.error_messages %>
-    <%= f.label :username, "Username" %>:
-    <%= f.text_field :username %><br/>
-    <%= f.label :password, "Password" %>:
-    <%= f.password_field :password %><br/>
-
-    <%= f.submit "Login" %>
-  </p>
+  <table>
+    <tr>
+      <td colspan="2"><%= f.error_messages %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :username %></td>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.submit "Login" %></td>
+    </tr>
+  </table>
 <% end %>
 
 <h3><%= link_to "Create New User >>", new_user_path %></h3>

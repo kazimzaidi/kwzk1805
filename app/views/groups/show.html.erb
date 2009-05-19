@@ -1,0 +1,9 @@
+<h1><%= @group.name -%></h1>
+<h2><%= @group.caption -%></h2>
+
+<h3><%= @group.name -%></h3>
+<p>
+  Owned by <%= @group.owner.name -%><br />
+  Created by <%= @group.creator.name -%><br />
+  <i><%= @group.group_type == Group::Type[:invite_only] ? "Invite Only" : "Moderated" -%></i>
+</p>
