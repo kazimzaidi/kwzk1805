@@ -1,3 +1,5 @@
-<h3>Dashboard goes here</h3>
-
-<%= link_to 'Logout', user_session_path(current_user.id), :method => :delete %>
+<p><%= link_to 'Logout', user_session_path(current_user.id), :method => :delete %></p>
+<h3>Dashboard</h3>
+<p>
+  Welcome, <%= current_user.name -%>!
+</p>
