@@ -1,12 +1,12 @@
 class CreateGroups < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
-      t.string :name
+      t.string :name, :null => false
       t.string :caption
-      t.string :group_type
-      t.integer :owner_id
-      t.integer :creator_id
-      t.boolean :active
+      t.string :group_type, :null => false
+      t.integer :owner_id, :null => false
+      t.integer :creator_id, :null => false
+      t.boolean :active, :null => false, :default => false
 
       t.timestamps
     end

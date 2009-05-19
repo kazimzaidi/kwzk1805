@@ -1,13 +1,13 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.string :username
-      t.string :encrypted_password
-      t.string :email
-      t.string :name
+      t.string :username, :null => false
+      t.string :encrypted_password, :null => false
+      t.string :email, :null => false
+      t.string :name, :null => false
       t.datetime :dob
       t.string :gender
-      t.string :status
+      t.string :status, :null => false
 
       t.string :persistence_token
 

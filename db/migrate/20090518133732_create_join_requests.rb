@@ -1,9 +1,9 @@
 class CreateJoinRequests < ActiveRecord::Migration
   def self.up
     create_table :join_requests do |t|
-      t.integer :user_id
-      t.integer :group_id
-      t.string :status
+      t.integer :user_id, :null => false
+      t.integer :group_id, :null => false
+      t.string :status, :null => false
 
       t.timestamps
     end

@@ -1,9 +1,9 @@
 class CreateMessages < ActiveRecord::Migration
   def self.up
     create_table :messages do |t|
-      t.text :body
-      t.integer :user_id
-      t.integer :group_id
+      t.text :body, :null => false
+      t.integer :user_id, :null => false
+      t.integer :group_id, :null => false
 
       t.timestamps
     end
