@@ -7,4 +7,6 @@ class Group < ActiveRecord::Base
   has_many :introductions
   has_many :invitations
   has_many :join_requests
+
+  validates_presence_of :name, :type
 end

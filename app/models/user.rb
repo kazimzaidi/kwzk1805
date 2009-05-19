@@ -11,5 +11,8 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :join_requests
 
+  validates_presence_of :username, :name, :email
+  validates_uniqueness_of :username, :email
+
   Status = {:active => 'ACT', :inactive => 'INA', :deleted => 'DEL'}
 end
