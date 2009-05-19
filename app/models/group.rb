@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   belongs_to :creator, :class_name => 'User', :foreign_key => :creator_id
 
-  has_many :messages
+  has_many :messages, :order => 'created_at DESC'
   has_many :introductions
   has_many :invitations
   has_many :join_requests

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.status = User::Status[:active]
 
     respond_to do |format|
       if @user.save

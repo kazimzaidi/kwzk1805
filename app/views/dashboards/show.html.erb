@@ -1,3 +1,11 @@
+<% content_for(:left_content) do %>
+  <h4>My Groups</h4>
+  <ul>
+    <% Group.all.each do |group| -%>
+      <li><%= link_to group.name, group_path(group) -%></li>
+    <% end -%>
+  </ul>
+<% end -%>
 <h3>Dashboard</h3>
 <p>
   Welcome, <%= @user.name -%>!<br />
@@ -9,16 +17,23 @@
 <% form_for @message do |f| %>
   <p>
     <%= f.error_messages %><br/>
-    <%= f.label :body, 'Message' %>:
-    <%= f.text_area :body %>
-    <%= f.submit 'Post' %>
+    <%= f.text_area :body, :size => '35x2' %>
+    <%= f.submit 'Post', :class => 'postbutton'  %>
   </p>
 <% end %>
 
 <h3>Your Messages</h3>
-    <ul>
+    <ul class="msgs">
       <% @user.messages.each do |message| %>
-        <li><p><%= message.body %></p></li>
+        <li>
+          <span class="msg">
+            <strong><%= link_to "#" + message.group.name, group_path(message.group) -%></strong>
+            <%= message.body %>
+            <span class="metainfo">
+              about <%= time_ago_in_words(message.created_at) -%> ago
+            </span>
+          </span>
+        </li>
       <% end %>
       </p>
     </ul>

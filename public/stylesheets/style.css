@@ -84,14 +84,13 @@ h3 {
 }
 #leftcontent ul {
 	list-style:none;
-	padding-left:20px;
+	padding-left:10px;
 	color:#AAAAAA;
 	background-color:#FFFFFF;
 }
 #leftcontent a {
 	color:#FF0066;
 	text-decoration:none;
-	font-size:16px;
 	background-color:#FFFFFF;
 }
 .news {
@@ -174,4 +173,50 @@ h3 {
 	float:left;
 	font-size:100%;
 	margin-top:5px;
+}
+ul.msgs
+{
+  margin: 0 20px 10px 20px;
+  font-size: 1.2em;
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: outside;
+  border-color:#AAAAAA;
+  border-style:solid;
+  border-width:1px;
+}
+
+ul.msgs li
+{
+  border-bottom:1px dashed #D2DADA;
+  line-height:1.1em;
+  padding:0.7em 1.0em 0.6em;
+}
+ul.msgs li:hover { background-color: #f7f7f7; }
+.msg 
+{
+  display: block;
+  min-height: 30px;
+  color: #444444;
+}
+.metainfo
+{
+  display: block;
+  color: #999999;
+  font-size: 0.9em;
+}
+#message_body
+{
+  font-size: 1.3em;
+}
+.postbutton
+{
+  font-size: 1.3em;
+  padding: 0.4em 1em;
+  position: relative;
+  bottom: 13px;
+}
+#new_user_session input
+{
+  font-size: 0.9em;
 }

@@ -1,9 +1,33 @@
-<h1><%= @group.name -%></h1>
-<h2><%= @group.caption -%></h2>
+<% content_for(:left_content) do -%>
+  <h1><%= @group.name -%></h1>
+  <h4><%= @group.caption -%></h4>
+  <br />
+  <ul>
+    <li>Owned by <%= link_to @group.owner.name, user_path(@group.owner) -%></li>
+    <li>Created by <%= link_to @group.creator.name, user_path(@group.creator) -%></li>
+    <li><i><%= @group.group_type == Group::Type[:invite_only] ? "Invite Only" : "Moderated" -%></i></li>
+  </ul>
+<% end -%>
+<h3>Messages</h3>
+<% form_for @message, :url => group_messages_path(@group) do |f| %>
+  <table>
+    <tr>
+      <td><%= f.text_area :body, :size => '35x2' -%></td>
+      <td><%= submit_tag 'Post', :class => 'postbutton' -%></td>
+    </tr>
+  </table>
+<% end -%>
 
-<h3><%= @group.name -%></h3>
-<p>
-  Owned by <%= @group.owner.name -%><br />
-  Created by <%= @group.creator.name -%><br />
-  <i><%= @group.group_type == Group::Type[:invite_only] ? "Invite Only" : "Moderated" -%></i>
-</p>
+<ul class="msgs">
+  <% @group.messages.each do |message| %>
+    <li>
+      <span class="msg">
+        <strong><%= link_to message.user.username, user_path(message.user) -%></strong>
+        <%= h(message.body) -%>
+        <span class="metainfo">
+          about <%= time_ago_in_words(message.created_at) -%> ago
+        </span>
+      </span>
+    </li>
+  <% end -%>
+</ul>

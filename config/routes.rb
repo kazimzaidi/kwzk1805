@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
   map.resources :users
-  map.resources :groups
+  map.resources :groups do |group|
+    group.resources :messages
+  end
   map.resources :messages
   map.resource  :dashboard
   map.root :controller => 'user_sessions', :action => 'new'

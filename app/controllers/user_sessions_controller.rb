@@ -4,9 +4,11 @@ class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
+    @user = User.new
   end
 
   def create
+    @user = User.new
     @user_session = UserSession.new(params[:user_session])
     respond_to do |format|
       if @user_session.save
