@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
     @group = Group.new(:name => params[:group][:name], :caption => params[:group][:caption],
                        :group_type => params[:group][:group_type], :owner_id => current_user.id,
                        :creator_id => current_user.id, :active => false)
+    @group.members << current_user
 
     respond_to do |format|
       if @group.save

@@ -3,14 +3,22 @@
   <h4><%= @group.caption -%></h4>
   <br />
   <ul>
+    <li><%= @group.members.count -%> members</li>
     <li>Owned by <%= link_to @group.owner.name, user_path(@group.owner) -%></li>
     <li>Created by <%= link_to @group.creator.name, user_path(@group.creator) -%></li>
     <li><i><%= @group.group_type == Group::Type[:invite_only] ? "Invite Only" : "Moderated" -%></i></li>
-    <li><%= current_user.is_member_of?(@group) ? link_to('Unjoin', group_join_request_path(@group.id), :method => :delete) : link_to('Join', group_join_requests_path(@group.id), :method => :post) -%></li>
+    <li>
+      <% if current_user.is_member_of?(@group) and !current_user.is_owner_of?(@group) -%>
+        <%#= link_to('Unjoin', group_join_request_path(@group.id), :method => :delete) -%>
+      <% elsif !current_user.is_member_of?(@group) -%>
+        <%= link_to('Join', group_join_requests_path(@group.id), :method => :post) -%>
+      <% end -%>
+    </li>
     <li><%= link_to('Admin', group_join_requests_path(@group)) if current_user.is_owner_of?(@group) -%></li>
   </ul>
 <% end -%>
 <h3>Messages</h3>
+<% if current_user.is_member_of?(@group) %>
 <% form_for @message, :url => group_messages_path(@group) do |f| %>
   <table>
     <tr>
@@ -19,8 +27,10 @@
     </tr>
   </table>
 <% end -%>
+<% end -%>
 
 <ul class="msgs">
+  <% if current_user.is_member_of?(@group) -%>
   <% @group.messages.each do |message| %>
     <li>
       <span class="msg">
@@ -31,5 +41,11 @@
         </span>
       </span>
     </li>
+  <% end -%>
+  <% if @group.messages.empty? %>
+    <li> No messages yet. </li>
+  <% end -%>
+  <% else -%>
+    <li> To read and post messages, you should join this group. </li>
   <% end -%>
 </ul>

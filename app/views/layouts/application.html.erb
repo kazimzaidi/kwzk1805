@@ -9,7 +9,7 @@
 <body>
 <div id="container">
 <div id="header">
-<h1>zookuu</h1>
+<h1><%= link_to "zookuu", current_user ? dashboard_path : "/" -%></h1>
 <div style="float: right;">
   <% if current_user %>
     <%= link_to current_user.username, user_path(current_user) -%> | 

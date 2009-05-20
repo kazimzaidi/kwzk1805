@@ -4,5 +4,5 @@ class Invitation < ActiveRecord::Base
 
   validates_presence_of :email
 
-  Status => {:pending => 'PEND', :accepted => 'ACCP'}
+  Status = {:pending => 'PEND', :accepted => 'ACCP'}
 end

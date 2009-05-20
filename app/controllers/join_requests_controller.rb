@@ -2,7 +2,7 @@ class JoinRequestsController < ApplicationController
   before_filter :login_required
 
   def index
-    @join_requests = Group.find(params[:group_id]).join_requests(:conditions => {:status => JoinRequest::Status[:pending]})
+    @join_requests = Group.find(params[:group_id]).join_requests.find(:all, :conditions => {:status => JoinRequest::Status[:pending]})
   end
 
   def create
@@ -23,7 +23,7 @@ class JoinRequestsController < ApplicationController
     respond_to do |format|
       if membership.save
         flash[:notice] = "#{jr.user.name} is now a member of #{jr.group.name}."
-        jr.update_attributes(:status => JoinRequest::Status[:approved])
+        jr.update_attributes!(:status => JoinRequest::Status[:approved])
         format.html {redirect_to group_join_requests_url(jr.group)}
       end
     end

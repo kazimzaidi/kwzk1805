@@ -1,19 +1,19 @@
 <% content_for(:left_content) do %>
   <h4>My Groups</h4>
   <ul>
-    <% Group.all.each do |group| -%>
+    <% @user.groups.each do |group| -%>
       <li><%= link_to group.name, group_path(group) -%></li>
     <% end -%>
   </ul>
+  <%= link_to 'Create a New Group', new_group_path -%>
 <% end -%>
 <h3>Dashboard</h3>
 <p>
   Welcome, <%= @user.name -%>!<br />
-  <%= link_to 'Create a New Group', new_group_path -%>
 </p>
 
+<!--
 <h3>Post Message</h3>
-
 <% form_for @message do |f| %>
   <p>
     <%= f.error_messages %><br/>
@@ -21,6 +21,7 @@
     <%= f.submit 'Post', :class => 'postbutton'  %>
   </p>
 <% end %>
+-->
 
 <h3>Messages</h3>
 <ul class="msgs">
@@ -36,4 +37,7 @@
       </span>
     </li>
   <% end %>
+  <% if @messages.empty? -%>
+    <li> No messages yet. </li>
+  <% end -%>
 </ul>

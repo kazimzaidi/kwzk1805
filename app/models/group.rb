@@ -1,9 +1,10 @@
 class Group < ActiveRecord::Base
-  has_many :members, :through => :memberships, :source => :users
+  has_many :members, :through => :memberships, :source => :user
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   belongs_to :creator, :class_name => 'User', :foreign_key => :creator_id
 
   has_many :messages, :order => 'created_at DESC'
+  has_many :memberships
   has_many :introductions
   has_many :invitations
   has_many :join_requests
