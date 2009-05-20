@@ -10,12 +10,20 @@
     <li>
       <% if current_user.is_member_of?(@group) and !current_user.is_owner_of?(@group) -%>
         <%#= link_to('Unjoin', group_join_request_path(@group.id), :method => :delete) -%>
-      <% elsif !current_user.is_member_of?(@group) -%>
+      <% elsif !current_user.is_member_of?(@group) and !(@group.group_type == Group::Type[:invite_only]) -%>
         <%= link_to('Join', group_join_requests_path(@group.id), :method => :post) -%>
       <% end -%>
     </li>
     <li><%= link_to('Admin', group_join_requests_path(@group)) if current_user.is_owner_of?(@group) -%></li>
   </ul>
+  <br />
+  <% if current_user.is_owner_of?(@group) -%>
+    <h4>Invite People</h4>
+    <% form_for @invitation, :url => group_invitations_path(@group) do |f| %>
+      <%= f.text_field :email, :size => 15 -%>
+      <%= submit_tag 'Invite' -%>
+    <% end -%>
+  <% end -%>
 <% end -%>
 <h3>Messages</h3>
 <% if current_user.is_member_of?(@group) %>

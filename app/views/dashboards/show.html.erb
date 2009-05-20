@@ -12,6 +12,18 @@
   Welcome, <%= @user.name -%>!<br />
 </p>
 
+<% unless @invitations.empty? -%>
+  <h3>Invitations</h3>
+  <ul class="msgs">
+    <% @invitations.each do |invitation| -%>
+      <li><%= link_to invitation.group.owner.name, user_path(invitation.group.owner) -%> has invited you to join 
+          <%= link_to "##{invitation.group.name}", group_path(invitation.group) -%>.
+	  <%= link_to "Accept?", invitation_path(invitation, :user_id => @user.id), :method => :put -%>
+      </li>
+    <% end -%>
+  </ul>
+<% end -%>
+
 <!--
 <h3>Post Message</h3>
 <% form_for @message do |f| %>

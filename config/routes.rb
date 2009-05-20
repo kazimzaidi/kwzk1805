@@ -5,8 +5,10 @@ ActionController::Routing::Routes.draw do |map|
     group.resources :messages
     group.resources :join_requests
     group.resources :memberships
+    group.resources :invitations
   end
 
+  map.resources :invitations
   map.resources :messages
   map.resource  :dashboard
   map.resources :memberships

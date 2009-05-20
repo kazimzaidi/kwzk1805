@@ -24,6 +24,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id], :include => :messages)
     @message = Message.new
+    @invitation = Invitation.new
   end
 
 end
