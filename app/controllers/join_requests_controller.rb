@@ -2,7 +2,8 @@ class JoinRequestsController < ApplicationController
   before_filter :login_required
 
   def index
-    @join_requests = Group.find(params[:group_id]).join_requests.find(:all, :conditions => {:status => JoinRequest::Status[:pending]})
+    @group = Group.find(params[:group_id])
+    @join_requests = @group.join_requests.find(:all, :conditions => {:status => JoinRequest::Status[:pending]})
   end
 
   def create
@@ -18,12 +19,21 @@ class JoinRequestsController < ApplicationController
 
   def update
     jr = JoinRequest.find(params[:id])
-    membership = Membership.new(:group_id => jr.group.id, :user_id => jr.user.id)
 
     respond_to do |format|
-      if membership.save
-        flash[:notice] = "#{jr.user.name} is now a member of #{jr.group.name}."
-        jr.update_attributes!(:status => JoinRequest::Status[:approved])
+      if params[:status] == JoinRequest::Status[:approved]
+        membership = Membership.new(:group_id => jr.group.id, :user_id => jr.user.id)
+        if membership.save
+          flash[:notice] = "#{jr.user.name} is now a member of #{jr.group.name}."
+
+          # TODO: WA: Send email notification to the user.
+          jr.update_attributes!(:status => JoinRequest::Status[:approved])
+          format.html {redirect_to group_join_requests_url(jr.group)}
+        end
+      elsif params[:status] == JoinRequest::Status[:rejected]
+        jr.update_attributes!(:status => JoinRequest::Status[:rejected])
+        flash[:notice] = "The join request was rejected."
+        # TODO: WA: Send email notification to the user.
         format.html {redirect_to group_join_requests_url(jr.group)}
       end
     end

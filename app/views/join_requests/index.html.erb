@@ -3,9 +3,11 @@
 <ul class="msgs">
   <% @join_requests.each do |jr| %>
     <li><%= link_to(jr.user.name, user_path(jr.user)) %> wants to join <%= link_to jr.group.name, group_path(jr.group) -%>.<br />
-    <%= link_to('Accept', group_join_request_path(jr.group, jr), :method => :put) %> or <%= link_to('Reject', group_join_request_path(jr.group, jr), :method => :put) %></li>
+    <%= link_to('Accept', group_join_request_path(jr.group, jr, :status => JoinRequest::Status[:approved]), :method => :put) %> or <%= link_to('Reject', group_join_request_path(jr.group, jr, :status => JoinRequest::Status[:rejected]), :method => :put) %></li>
   <% end %>
   <% if @join_requests.empty? -%>
     <li>No pending requests.</li>
   <% end -%>
+  <li><%= link_to('<< Back', group_path(@group)) -%></li>
 </ul>
+

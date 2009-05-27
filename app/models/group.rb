@@ -12,4 +12,12 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :group_type
 
   Type = {:invite_only => "INV", :moderated => "MOD"}
+
+  def is_moderated?
+    group_type == Type[:moderated] ? true : false
+  end
+
+  def is_invite_only?
+    group_type == Type[:invite_only] ? true : false
+  end
 end
